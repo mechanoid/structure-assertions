@@ -10,7 +10,7 @@
   });
 
   assert('.awesome-component-action').toHave( function(expect) {
-    expect.to.matchSelector('button');
+    expect.to.be.tag('button');
   });
 
   assert('.awesome-component-action.big').toHave( function(expect) {

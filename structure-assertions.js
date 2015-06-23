@@ -24,6 +24,10 @@ var assert = (function(){
     );
   };
 
+  expect.Assertion.prototype.tag = function(selector){
+    this.matchSelector(selector);
+  };
+
   Structure = function(component) {
     this.component = component;
     this.component.assertOnError = Assert.errorCallback;
@@ -59,6 +63,10 @@ var assert = (function(){
 
   Assert.errorCallback = function(obj, error) {
     console.warn(obj, error.message);
+  };
+
+  Assert.infoCallback = function(obj, message) {
+    console.info(obj, message);
   };
 
   Assert.onError = function(callback) {
