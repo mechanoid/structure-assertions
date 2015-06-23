@@ -37,6 +37,10 @@ See that you have expect.js expect-dom.js and the structure-assertions.js libs a
 <script src="./structure-assertions.js"></script>
 ```
 
+### demo
+
+have a look at the [demo](https://mechanoid.github.io/structure-assertions/demo.html)
+
 ### examples
 
 #### in general
