@@ -1,10 +1,9 @@
-/*jslint white: true, browser: true */
-/*globals expect, console */
+/*jslint white: true, browser: true, devel: true */
+/*globals expect */
 
 var assert = (function(){
   "use strict";
-  var Structure, StructureAssertion, Assert;
-
+  var Structure, Structures, Assert;
 
   expect.Assertion.prototype.baseAssert = expect.Assertion.prototype.assert;
 
@@ -12,21 +11,30 @@ var assert = (function(){
     try {
       this.baseAssert.apply(this, arguments);
     } catch(e) {
-      console.warn("Component", this.obj, ":", e.message);
+      // console.warn("Component", this.obj, ":", e.message);
+      this.obj.assertOnError(this.obj, e);
     }
+  };
+
+  expect.Assertion.prototype.deprecated = function(){
+    this.assert(
+        !this.obj
+      , function(){ return 'expected to be not used anymore'; }
+      , function(){ return 'expected to be not used anymore'; }
+    );
   };
 
   Structure = function(component) {
     this.component = component;
+    this.component.assertOnError = Assert.errorCallback;
     this.expect = expect(this.component);
   };
 
-  StructureAssertion = function(selector) {
+  Structures = function(selector) {
     var components, i, component, structure;
     components = document.querySelectorAll(selector);
 
     this.structures = [];
-    this.assertions = [];
 
     for (i = 0; i < components.length; i += 1) {
       component = components[i];
@@ -35,7 +43,7 @@ var assert = (function(){
     }
   };
 
-  StructureAssertion.prototype.toHave = function(cb) {
+  Structures.prototype.toHave = function(cb) {
     var i, structure;
 
     for(i = 0; i < this.structures.length; i += 1) {
@@ -46,11 +54,15 @@ var assert = (function(){
   };
 
   Assert = function(selector) {
-    return new StructureAssertion(selector);
+    return new Structures(selector);
   };
 
-  Assert.atLeastNChildrenOf = function(selector, n) {
-    return {"atLeastNChildrenOf": {n: n, selector: selector}};
+  Assert.errorCallback = function(obj, error) {
+    console.warn(obj, error.message);
+  };
+
+  Assert.onError = function(callback) {
+    this.errorCallback = callback;
   };
 
   return Assert;
