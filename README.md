@@ -31,6 +31,8 @@ See that you have expect.js expect-dom.js and the structure-assertions.js libs a
 
 ### examples
 
+#### in general
+
 You may add some component assertions to your page (usually only in dev or test environments),
 that will cry out for components that are out of sync to the frontend lib.
 
@@ -41,10 +43,22 @@ assert('.awesome-component').toHave( function(expect) {
 });
 ```
 
+#### for something like twitters Bootstrap
+
 With this in mind imagine a library of structure-assertions for [Bootstrap](http://getbootstrap.com/),
 that may look like that.
 
 **list-group**
+
+```html
+<ul class="list-group">
+  <li class="list-group-item">Cras justo odio</li>
+  <li class="list-group-item">Dapibus ac facilisis in</li>
+  <li class="list-group-item">Morbi leo risus</li>
+  <li class="list-group-item">Porta ac consectetur ac</li>
+  <li class="list-group-item">Vestibulum at eros</li>
+</ul>
+```
 
 ```js
 assert('.list-group').toHave( function(expect) {
@@ -54,5 +68,26 @@ assert('.list-group').toHave( function(expect) {
 
 assert('.list-group-item').toHave( function(expect) {
   expect.to.matchSelector('li');
+});
+```
+
+**panel**
+
+```html
+<div class="panel panel-danger">
+ <div class="panel-heading">Panel heading without title</div>
+ <div class="panel-body">
+   Panel content
+ </div>
+</div>
+```
+
+```js
+assert('.panel').toHave( function(expect) {
+  expect.to.containChild('.panel-heading,.panel-body');
+});
+
+assert('.panel-danger').toHave( function(expect) {
+  expect.to.be.deprecated();
 });
 ```
