@@ -1,0 +1,14 @@
+{
+  "name": "structure-assertions",
+  "version": "0.0.1",
+  "description": "component structure assertions to validate the html interface usage of frontend components",
+  "main": "structure-assertions.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Falk Hoppe <falkhoppe81@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "expect-dom": "^1.0.0"
+  }
+}
