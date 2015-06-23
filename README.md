@@ -12,3 +12,31 @@ so that html and css usually have to be adjusted side to side.
 In environments where frontend development is done beforehand or in a central repository,
 so where side by side development is not possible we need a way to get in touch with those components
 that become out of sync to the actual implementation.
+
+## usage
+
+### node
+
+t.b.a
+
+### browser
+
+See that you have expect.js expect-dom.js and the structure-assertions.js libs available:
+
+```html
+<script src="./node_modules/expect-dom/vendor/expect.js"></script>
+<script src="./node_modules/expect-dom/expect-dom.js"></script>
+<script src="./structure-assertions.js"></script>
+```
+
+### example
+
+You may add some component assertions to your page (usually only in dev or test environments),
+that will cry out for components that are out of sync to the frontend lib.
+
+```js
+assert('.awesome-component').toHave( function(expect) {
+  expect.to.have.attr("data-awesomeness");
+  expect.to.containChild('.awesome-component-footer');
+});
+```
