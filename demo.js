@@ -45,8 +45,9 @@
           position: directions[i % 3]
         });
         $component.tooltipster('show');
+        $component.css('border', '2px solid #000');
 
-        console.info(componentName, ":", component.error.message, " \n\n", {obj: component.obj});
+        console.info("%c"+componentName+": \n\n"+component.error.message, "color: blue;", " \n\n", {obj: component.obj}, "\n\n");
       }
     }
   }
