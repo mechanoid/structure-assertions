@@ -9,6 +9,7 @@
   "author": "Falk Hoppe <falkhoppe81@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "expect-dom": "^1.0.0"
+    "expect-dom": "^1.0.0",
+    "tooltipster": "^1.0.9"
   }
 }

@@ -3,8 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Component Framework</title>
+  <link rel="stylesheet" type="text/css" href="./node_modules/tooltipster/css/tooltipster.css" />
+  <link rel="stylesheet" type="text/css" href="./node_modules/tooltipster/css/themes/tooltipster-punk.css" />
+  <style>
+    .errors {
+      border: 3px solid red;
+      background: #fee;
+
+      color: red;
+      display: none;
+    }
+
+    .error {
+      padding: .3em;
+    }
+
+    .awesome-component {
+      padding: 1em;
+      margin-bottom: 2em;
+      background-color: #dedede;
+    }
+  </style>
 </head>
 <body>
+  <ul class="errors">
+  </ul>
+
   <section class="awesome-component" data-awesomeness="fubar">
     <header class="awesome-component-header">
       <h1>Awesome Component v0.0.2</h1>
@@ -21,10 +45,12 @@
     </header>
     <div class="awesome-component-content">
       <a class="awesome-component-action" href="#">Do Something</a>
-      <a class="awesome-component-action big" href="#">Do Something</a>
+      <a class="awesome-component-action big" href="#">Do Something Big</a>
     </div>
   </section>
 
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="./node_modules/tooltipster/js/jquery.tooltipster.min.js"></script>
   <script src="./node_modules/expect-dom/vendor/expect.js"></script>
   <script src="./node_modules/expect-dom/expect-dom.js"></script>
   <script src="./structure-assertions.js"></script>

@@ -28,9 +28,10 @@ var assert = (function(){
     this.matchSelector(selector);
   };
 
-  Structure = function(component) {
+  Structure = function(name, component) {
     this.component = component;
     this.component.assertOnError = Assert.errorCallback;
+    this.component.assertName = name;
     this.expect = expect(this.component);
   };
 
@@ -42,7 +43,7 @@ var assert = (function(){
 
     for (i = 0; i < components.length; i += 1) {
       component = components[i];
-      structure = new Structure(component);
+      structure = new Structure(selector, component);
       this.structures.push(structure);
     }
   };
