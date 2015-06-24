@@ -48,7 +48,7 @@ assert('.awesome-component').toHave( function(expect) {
 });
 ```
 
-### optionals
+#### optionals
 
 In detail that means that we want to describe rules about our JS and CSS components,
 that are must haves and can be asserted. While those assertion make a good deal about documentation,
