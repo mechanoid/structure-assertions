@@ -4,7 +4,7 @@
 (function(){
   "use strict";
 
-  var componentAssertions, componentName, component, components, i, directions;
+  var componentAssertions, componentName, component, $component, components, i, directions;
 
   componentAssertions = {};
   directions = ['top', 'right', 'bottom', 'left'];
@@ -35,9 +35,18 @@
       components = componentAssertions[componentName];
       for (i = 0; i < components.length; i += 1) {
         component = components[i];
+        $component = $(component.obj);
+        $component.tooltipster({
+          multiple: true,
+          animation: 'fade',
+          delay: 200,
+          content: component.error.message,
+          theme: 'tooltipster-punk',
+          position: directions[i % 3]
+        });
+        $component.tooltipster('show');
 
-        $(component.obj).tooltipster({multiple: true, animation: 'facde', delay: 200, content: component.error.message, theme: 'tooltipster-punk', position: directions[i % 3]});
-        $(component.obj).tooltipster('show');
+        console.info(componentName, ":", component.error.message, " \n\n", {obj: component.obj});
       }
     }
   }
