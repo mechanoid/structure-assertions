@@ -117,7 +117,7 @@ assert('.panel-danger').toHave( function(expect) {
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Falk Hoppe <falkhoppe81@gmail.com>
+Copyright (c) 2015 Falk Hoppe
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
