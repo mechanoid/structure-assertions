@@ -10,16 +10,19 @@
   directions = ['top', 'right', 'bottom', 'left'];
 
   assert.onError(function(obj, error){
-    if (componentAssertions[obj.assertName] === undefined) {
-      componentAssertions[obj.assertName] = [];
+    if (componentAssertions[obj.componentName] === undefined) {
+      componentAssertions[obj.componentName] = [];
     }
 
-    componentAssertions[obj.assertName].push({obj: obj, error: error});
+    componentAssertions[obj.componentName].push({obj: obj, error: error});
   });
 
   assert('.awesome-component').toHave( function(expect) {
       expect.to.have.attr("data-awesomeness");
       expect.to.containChild('.awesome-component-footer');
+
+      expect.optional.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
+      expect.optional.attributes('data-awesome');
   });
 
   assert('.awesome-component-action').toHave( function(expect) {

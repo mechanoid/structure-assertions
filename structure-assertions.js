@@ -1,13 +1,13 @@
-/*jslint white: true, browser: true, devel: true */
+/*jslint white: true, browser: true, devel: true, nomen: true */
 /*globals expect */
 
-var assert = (function(){
+var assert = (function(window){
   "use strict";
   var Structure, Structures, Assert;
 
-  expect.Assertion.prototype.baseAssert = expect.Assertion.prototype.assert;
+  window.expect.Assertion.prototype.baseAssert = window.expect.Assertion.prototype.assert;
 
-  expect.Assertion.prototype.assert = function(){
+  window.expect.Assertion.prototype.assert = function(){
     try {
       this.baseAssert.apply(this, arguments);
     } catch(e) {
@@ -16,7 +16,7 @@ var assert = (function(){
     }
   };
 
-  expect.Assertion.prototype.deprecated = function(){
+  window.expect.Assertion.prototype.deprecated = function(){
     this.assert(
         !this.obj
       , function(){ return 'expected to be not used anymore'; }
@@ -24,15 +24,44 @@ var assert = (function(){
     );
   };
 
-  expect.Assertion.prototype.tag = function(selector){
+  window.expect.Assertion.prototype.optional = {
+      _attributes: function(){
+        this.obj.optional = (this.obj.optional || {});
+        this.obj.optional.attributes = arguments;
+      },
+      _classes: function(){
+        this.obj.optional = (this.obj.optional || {});
+        this.obj.optional.classes = arguments;
+      },
+      _children: function(){
+        this.obj.optional = (this.obj.optional || {});
+        this.obj.optional.children = arguments;
+      }
+  };
+
+  window.expect.Assertion.prototype.tag = function(selector){
     this.matchSelector(selector);
   };
 
   Structure = function(name, component) {
+    var self = this;
+
     this.component = component;
     this.component.assertOnError = Assert.errorCallback;
-    this.component.assertName = name;
-    this.expect = expect(this.component);
+    this.expect = window.expect(this.component);
+    this.expect.obj.componentName = name;
+
+    this.expect.optional.attributes = function(){
+      window.expect.Assertion.prototype.optional._attributes.apply(self.expect, arguments);
+    };
+
+    this.expect.optional.classes = function(){
+      window.expect.Assertion.prototype.optional._classes.apply(self.expect, arguments);
+    };
+
+    this.expect.optional.children = function(){
+      window.expect.Assertion.prototype.optional._children.apply(self.expect, arguments);
+    };
   };
 
   Structures = function(selector) {
@@ -63,7 +92,12 @@ var assert = (function(){
   };
 
   Assert.errorCallback = function(obj, error) {
-    console.warn(obj, error.message);
+    var optionals = {};
+    if (obj.optional) {
+      optionals = obj.optional;
+    }
+
+    console.info("%c"+obj.componentName+": \n\n"+error.message, "color: blue;", " \n\n", {obj: obj, optionals: optionals}, "\n\n");
   };
 
   Assert.infoCallback = function(obj, message) {
@@ -75,4 +109,4 @@ var assert = (function(){
   };
 
   return Assert;
-}());
+}(this));

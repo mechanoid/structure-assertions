@@ -13,14 +13,6 @@ In environments where frontend development is done beforehand or in a central re
 so where side by side development is not possible we need a way to get in touch with those components
 that become out of sync to the actual implementation.
 
-In detail that means that we want to describe rules about our JS and CSS components,
-that are must haves and can be asserted. While those assertion make a good deal about documentation,
-they are not documenting all possibilities for your component.
-
-Assertions are about breaking changes and must haves. We want to see directly when we are breaking the contract,
-not if we have certain optional possibilities for a component. While i agree, that it would be nice
-to have a direct link to the usage of a component (and all it options), we aim for clear and concise feedback about errors only.
-
 ## usage
 
 ### node
@@ -39,7 +31,8 @@ See that you have expect.js expect-dom.js and the structure-assertions.js libs a
 
 ### demo
 
-have a look at the [demo](https://mechanoid.github.io/structure-assertions/demo.html)
+have a look at the [demo](https://mechanoid.github.io/structure-assertions/demo.html) page,
+with assertion errors highlighted with tooltipster - tooltips.
 
 ### examples
 
@@ -54,6 +47,24 @@ assert('.awesome-component').toHave( function(expect) {
   expect.to.containChild('.awesome-component-footer');
 });
 ```
+
+### optionals
+
+In detail that means that we want to describe rules about our JS and CSS components,
+that are must haves and can be asserted. While those assertion make a good deal about documentation,
+they are not documenting all possibilities for your component.
+
+While assertions are about breaking changes and must haves, where we want to see directly when we are breaking the contract,
+assertions are not telling us if we have certain optional possibilities for a component. Therefore structure-assertions
+may have additional optionals defined that are available on the asserted object and will be printed to the debug console for default.
+
+```js
+assert('.awesome-component').toHave( function(expect) {
+    expect.optional.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
+    expect.optional.attributes('data-awesome');
+});
+```
+
 
 #### for something like twitters Bootstrap
 
