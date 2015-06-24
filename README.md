@@ -85,12 +85,12 @@ that may look like that.
 
 ```js
 assert('.list-group').toHave( function(expect) {
-  expect.to.matchSelector('ul,ol');
+  expect.to.be.tag('ul,ol');
   expect.to.containChild('.list-group-item');
 });
 
 assert('.list-group-item').toHave( function(expect) {
-  expect.to.matchSelector('li');
+  expect.to.be.tag('li');
 });
 ```
 
@@ -108,11 +108,21 @@ assert('.list-group-item').toHave( function(expect) {
 ```js
 assert('.panel').toHave( function(expect) {
   expect.to.containChild('.panel-heading,.panel-body');
+  expect.optional.classes('panel-primary', 'panel-success', 'panel-info', 'panel-warning', 'panel-danger');
+  expect.optional.children('.panel-footer');
 });
 
 assert('.panel-danger').toHave( function(expect) {
   expect.to.be.deprecated();
 });
+
+assert('.panel-heading').toHave( function(expect) {
+  expect.to.be.tag('div');
+}
+
+assert('.panel-body').toHave( function(expect) {
+  expect.to.be.tag('div');
+}
 ```
 
 ## Credits
