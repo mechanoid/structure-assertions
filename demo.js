@@ -4,7 +4,7 @@
 (function(){
   "use strict";
 
-  var componentAssertions, componentName, component, $component, components, i, directions;
+  var componentAssertions, componentName, component, $component, components, i, directions, optionals;
 
   componentAssertions = {};
   directions = ['top', 'right', 'bottom', 'left'];
@@ -50,7 +50,12 @@
         $component.tooltipster('show');
         $component.css('border', '2px solid #000');
 
-        console.info("%c"+componentName+": \n\n"+component.error.message, "color: blue;", " \n\n", {obj: component.obj}, "\n\n");
+        optionals = {};
+        if (component.obj.optional) {
+          optionals = component.obj.optional;
+        }
+
+        console.info("%c"+componentName+": \n\n"+component.error.message, "color: blue;", " \n\n", {obj: component.obj, optionals: optionals}, "\n\n");
       }
     }
   }
