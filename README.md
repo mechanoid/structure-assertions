@@ -39,7 +39,8 @@ See that you have expect.js expect-dom.js and the structure-assertions.js libs a
 
 ### demo
 
-have a look at the [demo](https://mechanoid.github.io/structure-assertions/demo.html)
+have a look at the [demo](https://mechanoid.github.io/structure-assertions/demo.html) page,
+with assertion errors highlighted with tooltipster - tooltips.
 
 ### examples
 
