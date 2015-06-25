@@ -27,8 +27,14 @@ var assert = (function(window){
   "use strict";
   var Structure, Structures, Assert;
 
+  // because of a lack of a real plugin mechanism of expect.js we have to monkey patch
+  // the assert method, because we want to be able to run through all assertions without
+  // stopping execution on first fail (like in usual test frameworks).
+
+  // backup original expect.js assert method
   window.expect.Assertion.prototype.baseAssert = window.expect.Assertion.prototype.assert;
 
+  // overwrite assertion method to run in assertion error callback on execption
   window.expect.Assertion.prototype.assert = function(){
     try {
       this.baseAssert.apply(this, arguments);
@@ -38,6 +44,7 @@ var assert = (function(window){
     }
   };
 
+  // adding deprecated expectation to expect.js assertions
   window.expect.Assertion.prototype.deprecated = function(){
     this.assert(
         !this.obj
@@ -46,25 +53,38 @@ var assert = (function(window){
     );
   };
 
+  // adding possibility to document optionals to a component, like classes, attributes and children.
+  // The optional object provides for each category a function that sets its arguments to the
+  // internal expectation object.
+  //
+  // To make the this context and its object available, we have to create a related public
+  // method to the specific structure.expect object itself, so that we can bind the expect object
+  // as context (see Structure-Constructor).
   window.expect.Assertion.prototype.optional = {
-      _attributes: function(){
-        this.obj.optional = (this.obj.optional || {});
-        this.obj.optional.attributes = arguments;
-      },
-      _classes: function(){
-        this.obj.optional = (this.obj.optional || {});
-        this.obj.optional.classes = arguments;
-      },
-      _children: function(){
-        this.obj.optional = (this.obj.optional || {});
-        this.obj.optional.children = arguments;
-      }
+    _attributes: function(){
+      this.obj.optional = (this.obj.optional || {});
+      this.obj.optional.attributes = arguments;
+    },
+    _classes: function(){
+      this.obj.optional = (this.obj.optional || {});
+      this.obj.optional.classes = arguments;
+    },
+    _children: function(){
+      this.obj.optional = (this.obj.optional || {});
+      this.obj.optional.children = arguments;
+    }
   };
 
+  // shortcut method for matchSelector
   window.expect.Assertion.prototype.tag = function(selector){
     this.matchSelector(selector);
   };
 
+  // constructor method which inits an expect object, for a specific dom element,
+  // including dsl method wrappers for the optional expect rules.
+  //
+  // @param name [String] - a key to identify a component (is usually logged to the console)
+  // @param component [dom] - dom object
   Structure = function(name, component) {
     var self = this;
 
@@ -86,6 +106,10 @@ var assert = (function(window){
     };
   };
 
+  // constructor method for breaking up dom object occurances in single structure components,
+  // and builds the core of the exposed Assert objects dsl.
+  //
+  // @param selector [String] - css selector
   Structures = function(selector) {
     var components, i, component, structure;
     components = document.querySelectorAll(selector);
@@ -99,6 +123,8 @@ var assert = (function(window){
     }
   };
 
+  // dsl method for starting configuring component assertions,
+  // that binds the structures expect object to the configuration callback.
   Structures.prototype.toHave = function(cb) {
     var i, structure;
 
@@ -109,10 +135,12 @@ var assert = (function(window){
     }
   };
 
+  // exposed assert object
   Assert = function(selector) {
     return new Structures(selector);
   };
 
+  // default callback for reacting on assertion errors
   Assert.errorCallback = function(obj, error) {
     var optionals = {};
     if (obj.optional) {
@@ -122,10 +150,7 @@ var assert = (function(window){
     console.info("%c"+obj.componentName+": \n\n"+error.message, "color: blue;", " \n\n", {obj: obj, optionals: optionals}, "\n\n");
   };
 
-  Assert.infoCallback = function(obj, message) {
-    console.info(obj, message);
-  };
-
+  // setter for the errorCallback
   Assert.onError = function(callback) {
     this.errorCallback = callback;
   };
