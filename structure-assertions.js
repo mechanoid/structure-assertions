@@ -37,15 +37,17 @@ var assert = (function(window){
   // overwrite assertion method to run in assertion error callback on execption
   window.expect.Assertion.prototype.assert = function(){
     try {
+      // calling the original expect.js assert method
       this.baseAssert.apply(this, arguments);
     } catch(e) {
-      // console.warn("Component", this.obj, ":", e.message);
+      // call assert error callback instead of throwing an exception for each assertion
       this.obj.assertOnError(this.obj, e);
     }
   };
 
   // adding deprecated expectation to expect.js assertions
   window.expect.Assertion.prototype.deprecated = function(){
+    // just fail when obj is found
     this.assert(
         !this.obj
       , function(){ return 'expected to be not used anymore'; }
@@ -62,15 +64,21 @@ var assert = (function(window){
   // as context (see Structure-Constructor).
   window.expect.Assertion.prototype.optional = {
     _attributes: function(){
+      // initialize instance optional object
       this.obj.optional = (this.obj.optional || {});
+      // set optional attributes
       this.obj.optional.attributes = arguments;
     },
     _classes: function(){
+      // initialize instance optional object
       this.obj.optional = (this.obj.optional || {});
+      // set optional classes
       this.obj.optional.classes = arguments;
     },
     _children: function(){
+      // initialize instance optional object
       this.obj.optional = (this.obj.optional || {});
+      // set optional children
       this.obj.optional.children = arguments;
     }
   };
@@ -88,19 +96,26 @@ var assert = (function(window){
   Structure = function(name, component) {
     var self = this;
 
+    // memoize the actual dom node
     this.component = component;
-    this.component.assertOnError = Assert.errorCallback;
+    // create initial expect component to register assertions on
     this.expect = window.expect(this.component);
+    // make assertion callback available to overwritten assert method
+    this.expect.obj.assertOnError = Assert.errorCallback;
+    // make component name available to expect object
     this.expect.obj.componentName = name;
 
+    // public method to inject this.expect obj into private _attributes method
     this.expect.optional.attributes = function(){
       window.expect.Assertion.prototype.optional._attributes.apply(self.expect, arguments);
     };
 
+    // public method to inject this.expect obj into private _classes method
     this.expect.optional.classes = function(){
       window.expect.Assertion.prototype.optional._classes.apply(self.expect, arguments);
     };
 
+    // public method to inject this.expect obj into private _children method
     this.expect.optional.children = function(){
       window.expect.Assertion.prototype.optional._children.apply(self.expect, arguments);
     };
@@ -112,8 +127,11 @@ var assert = (function(window){
   // @param selector [String] - css selector
   Structures = function(selector) {
     var components, i, component, structure;
+
+    // all dom nodes matched by the selector (aka component name)
     components = document.querySelectorAll(selector);
 
+    // list of structurized dom component nodes
     this.structures = [];
 
     for (i = 0; i < components.length; i += 1) {
@@ -125,13 +143,15 @@ var assert = (function(window){
 
   // dsl method for starting configuring component assertions,
   // that binds the structures expect object to the configuration callback.
-  Structures.prototype.toHave = function(cb) {
+  Structures.prototype.toHave = function(assertions) {
     var i, structure;
 
+    // assign assertion bound to the component cluster to each single structure.
     for(i = 0; i < this.structures.length; i += 1) {
       structure = this.structures[i];
 
-      cb(structure.expect);
+      // callback of assertions that are configured for that component
+      assertions(structure.expect);
     }
   };
 
@@ -143,17 +163,24 @@ var assert = (function(window){
   // default callback for reacting on assertion errors
   Assert.errorCallback = function(obj, error) {
     var optionals = {};
+
+    // While many assertions are created by the expect.js dsl,
+    // the expect.assertions created by out Structure-constructor
+    // initialize optionals, which may address additional attributes, classes, or children.
     if (obj.optional) {
       optionals = obj.optional;
     }
 
+    // default logging
     console.info("%c"+obj.componentName+": \n\n"+error.message, "color: blue;", " \n\n", {obj: obj, optionals: optionals}, "\n\n");
   };
 
   // setter for the errorCallback
   Assert.onError = function(callback) {
+    // overwrite the default error callback
     this.errorCallback = callback;
   };
 
+  // return Assert as lib entry
   return Assert;
 }(this));
