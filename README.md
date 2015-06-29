@@ -169,6 +169,10 @@ THE SOFTWARE.
 
 ### 3rd-party
 
-Heavily borrows from expect.js by Guillermo Rauch - MIT,
-expect-dom.js by Kevin Dente - MIT
-and should.js by TJ Holowaychuck - MIT
+Heavily borrows from
+
+[expect-dom](https://github.com/kevindente/expect-dom) by Kevin Dente - MIT,
+
+[expect.js](https://github.com/Automattic/expect.js) by Guillermo Rauch - MIT
+
+and [should.js](https://github.com/shouldjs/should.js) by TJ Holowaychuck - MIT
