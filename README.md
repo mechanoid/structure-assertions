@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/mechanoid/structure-assertions.png?label=ready&title=Ready)](https://waffle.io/mechanoid/structure-assertions)
 # structure assertions
 
 ## introduction
