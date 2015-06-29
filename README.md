@@ -103,6 +103,7 @@ assert('.list-group').toHave( function(expect) {
 
 assert('.list-group-item').toHave( function(expect) {
   expect.to.be.tag('li');
+  expect.to.descendant('.list-group');
 });
 ```
 
@@ -119,13 +120,9 @@ assert('.list-group-item').toHave( function(expect) {
 
 ```js
 assert('.panel').toHave( function(expect) {
-  expect.to.containChild('.panel-heading,.panel-body');
+  expect.to.containChild('.panel-body');
   expect.optional.classes('panel-primary', 'panel-success', 'panel-info', 'panel-warning', 'panel-danger');
-  expect.optional.children('.panel-footer');
-});
-
-assert('.panel-danger').toHave( function(expect) {
-  expect.to.be.deprecated();
+  expect.optional.children('.panel-footer', '.panel-heading');
 });
 
 assert('.panel-heading').toHave( function(expect) {
@@ -135,6 +132,15 @@ assert('.panel-heading').toHave( function(expect) {
 assert('.panel-body').toHave( function(expect) {
   expect.to.be.tag('div');
 }
+
+assert('.panel-body, .panel-footer, .panel-heading').toHave( function(expect) {
+  expect.to.be.descendant('.panel');
+}
+
+assert('.panel-danger').toHave( function(expect) {
+  // only an example ;)
+  expect.to.be.deprecated();
+});
 ```
 
 ## Credits
