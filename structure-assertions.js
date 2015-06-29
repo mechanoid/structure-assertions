@@ -55,6 +55,16 @@ var assert = (function(window){
     );
   };
 
+  // adding deprecated expectation to expect.js assertions
+  window.expect.Assertion.prototype.descendant = function(selector){
+    // just fail when obj is found
+    this.assert(
+        this.obj.parentNode.matches(selector)
+      , function(){ return 'expected to be a descendant to ' + selector; }
+      , function(){ return 'expected to be a descendant to ' + selector; }
+    );
+  };
+
   // adding possibility to document optionals to a component, like classes, attributes and children.
   // The optional object provides for each category a function that sets its arguments to the
   // internal expectation object.

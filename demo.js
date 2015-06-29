@@ -6,13 +6,17 @@
 
   assert('.awesome-component').toHave( function(expect) {
       expect.to.have.attr("data-awesomeness");
-      expect.to.containChild('.awesome-component-footer');
 
       expect.optional.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
       expect.optional.attributes('data-awesome');
   });
 
+  assert('.awesome-component-header').toHave( function(expect) {
+      expect.to.be.descendant(".awesome-component");
+  });
+
   assert('.awesome-component-action').toHave( function(expect) {
+    expect.to.be.descendant(".awesome-component-content");
     expect.to.be.tag('button');
   });
 
