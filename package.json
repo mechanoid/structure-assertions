@@ -10,5 +10,14 @@
   "license": "MIT",
   "dependencies": {
     "expect-dom": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6",
+    "karma": "^0.12.37",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "karma-qunit": "^0.1.4",
+    "phantomjs": "^1.9.17",
+    "qunitjs": "^1.18.0"
   }
 }
