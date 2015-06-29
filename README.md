@@ -1,27 +1,32 @@
 # structure assertions
 
+## introduction
+
 Many projects nowadays work with a centralized asset library that sports css and/or js components.
 In many cases this library/framework is created from ux/marketing/whatever-agencies or much better in your own responsibility,
 but in either way you are facing the same kind of problems.
 
-An HTML interface contract is in place that binds the components maintained in the centralized repository
-to the implementations created in apps that include this repository. Once the framework is released in a new version
-this contract may be violated. Evolving designs may involve demands to the html structure they are applied on,
-so that html and css usually have to be adjusted side to side.
+An **HTML interface** contract is in place that binds the components maintained in the centralized repository
+to the implementations created in apps that include this repository. Once the framework is released in a new version this contract may be violated. Evolving designs may involve demands to the html structure they are applied on, so that html and css usually have to be adjusted side to side.
 
-In environments where frontend development is done beforehand or in a central repository,
-so where side by side development is not possible we need a way to get in touch with those components
-that become out of sync to the actual implementation.
+While a good frontend framework is provided with [semantic versioning](http://semver.org/) which gives you information if new features are added or either the interface to some of your components have changed, it is still hard to figure out which components have changed and what you have to adjust.
+
+Where other frontend libraries try to share global templates as part of their frontend library, it may be better to give the consumer a hint about where the usage of the library is out of sync and what has to be done to get it aligned again.
+
+**Structure Assertions** provide a possibility to enrich a front-library / styleguide / js-component with assertions, that consumers of that lib can include in his page,
+to see if their implementations are matching the expectations made by the lib.
 
 ## usage
 
 ### node
 
-t.b.a
+Structure Assertions are meant to be run in the actual code of the consumer,
+so a node-only usage may make no sense. Anyway we will provide a npm version soon, to
+have the library available in headless browser scenarios and similar available.
 
 ### browser
 
-See that you have expect.js expect-dom.js and the structure-assertions.js libs available:
+See that you have expect.js, expect-dom.js and the structure-assertions.js libs available either via `bower` or `npm`:
 
 ```html
 <script src="./node_modules/expect-dom/vendor/expect.js"></script>
@@ -38,25 +43,32 @@ with assertion errors highlighted with tooltipster - tooltips.
 
 #### in general
 
-You may add some component assertions to your page (usually only in dev or test environments),
-that will cry out for components that are out of sync to the frontend lib.
+You may add some component assertions to your page (usually only in dev or test environments), that will cry out for components that are out of sync to the frontend lib.
 
 ```js
 assert('.awesome-component').toHave( function(expect) {
   expect.to.have.attr("data-awesomeness");
-  expect.to.containChild('.awesome-component-footer');
 });
+
+assert('.awesome-component-content').toHave( function(expect) {
+  expect.to.be.descendant('.awesome-component');
+}
 ```
+
+> NOTE: please consider to make assupmtions as weak as possible in component design.
+> As shown in the examble above there may be components that may have certain children,
+> but in case the component would work without such a child component, we should
+> declare them as optional by reversing the relationship constraint in declaring the
+> child component to have to be a descendant to its parent compoent.
 
 #### optionals
 
 In detail that means that we want to describe rules about our JS and CSS components,
-that are must haves and can be asserted. While those assertion make a good deal about documentation,
-they are not documenting all possibilities for your component.
+that are must haves and can be asserted. While those assertion make a good deal about documentation, they are not documenting all possibilities for your component.
 
-While assertions are about breaking changes and must haves, where we want to see directly when we are breaking the contract,
-assertions are not telling us if we have certain optional possibilities for a component. Therefore structure-assertions
-may have additional optionals defined that are available on the asserted object and will be printed to the debug console for default.
+While assertions are about breaking changes and must haves, where we want to see directly when we are breaking the contract, assertions are not telling us if we have certain optional possibilities for a component. Therefore structure-assertions may have additional optionals defined that are available on the asserted object and will be printed to the debug console for default.
+
+But the real match may be the assertion definition itself, where it may be a proper documentation about optionals.
 
 ```js
 assert('.awesome-component').toHave( function(expect) {
