@@ -1,4 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/mechanoid/structure-assertions.png?label=ready&title=Ready)](https://waffle.io/mechanoid/structure-assertions)
+[![npm version](https://badge.fury.io/js/structure-assertions.svg)](http://badge.fury.io/js/structure-assertions)
 # structure assertions
 
 ## introduction
