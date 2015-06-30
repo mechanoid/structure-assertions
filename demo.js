@@ -1,15 +1,15 @@
 /*jslint white: true, browser: true, devel: true */
-/*globals assert, $ */
+/*globals $, component */
 
 (function(){
   "use strict";
 
-  var componentAssertions, componentName, component, $component, components, i, directions, optionals;
+  var componentAssertions, componentName, comp, $component, components, i, directions, optionals;
 
   componentAssertions = {};
   directions = ['top', 'right', 'bottom', 'left'];
 
-  assert.onError(function(obj, error){
+  component.onError(function(obj, error){
     if (componentAssertions[obj.componentName] === undefined) {
       componentAssertions[obj.componentName] = [];
     }
@@ -17,19 +17,23 @@
     componentAssertions[obj.componentName].push({obj: obj, error: error});
   });
 
-  assert('.awesome-component').toHave( function(expect) {
-      expect.to.have.attr("data-awesomeness");
-      expect.to.containChild('.awesome-component-footer');
+  component('.awesome-component').assert( function(expect) {
+    expect.to.have.attr("data-awesomeness");
 
-      expect.optional.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
-      expect.optional.attributes('data-awesome');
+    expect.optional.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
+    expect.optional.attributes('data-awesome');
   });
 
-  assert('.awesome-component-action').toHave( function(expect) {
+  component('.awesome-component-header').assert( function(expect) {
+      expect.to.be.descendant(".awesome-component");
+  });
+
+  component('.awesome-component-action').assert( function(expect) {
+    expect.to.be.descendant(".awesome-component-content");
     expect.to.be.tag('button');
   });
 
-  assert('.awesome-component-action.big').toHave( function(expect) {
+  component('.awesome-component-action.big').assert( function(expect) {
     expect.to.be.deprecated();
   });
 
@@ -37,8 +41,8 @@
     if(componentAssertions.hasOwnProperty(componentName)) {
       components = componentAssertions[componentName];
       for (i = 0; i < components.length; i += 1) {
-        component = components[i];
-        $component = $(component.obj);
+        comp = components[i];
+        $component = $(comp.obj);
         $component.tooltipster({
           multiple: true,
           animation: 'fade',
