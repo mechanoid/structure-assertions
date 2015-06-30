@@ -23,7 +23,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-var assert = (function(window){
+var component = (function(window){
   "use strict";
   var Structure, Structures, Assert;
 
@@ -153,7 +153,7 @@ var assert = (function(window){
 
   // dsl method for starting configuring component assertions,
   // that binds the structures expect object to the configuration callback.
-  Structures.prototype.toHave = function(assertions) {
+  Structures.prototype.assert = function(assertions) {
     var i, structure;
 
     // assign assertion bound to the component cluster to each single structure.
@@ -191,6 +191,8 @@ var assert = (function(window){
     this.errorCallback = callback;
   };
 
-  // return Assert as lib entry
-  return Assert;
+  // return assertion instance as lib entry
+  return function(selector){
+    return new Assert(selector);
+  };
 }(this));

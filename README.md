@@ -47,11 +47,11 @@ with assertion errors highlighted with tooltipster - tooltips.
 You may add some component assertions to your page (usually only in dev or test environments), that will cry out for components that are out of sync to the frontend lib.
 
 ```js
-assert('.awesome-component').toHave( function(expect) {
+component('.awesome-component').toHave( function(expect) {
   expect.to.have.attr("data-awesomeness");
 });
 
-assert('.awesome-component-content').toHave( function(expect) {
+component('.awesome-component-content').toHave( function(expect) {
   expect.to.be.descendant('.awesome-component');
 }
 ```
@@ -72,7 +72,7 @@ While assertions are about breaking changes and must haves, where we want to see
 But the real match may be the assertion definition itself, where it may be a proper documentation about optionals.
 
 ```js
-assert('.awesome-component').toHave( function(expect) {
+component('.awesome-component').toHave( function(expect) {
     expect.optional.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
     expect.optional.attributes('data-awesome');
 });
@@ -97,12 +97,12 @@ that may look like that.
 ```
 
 ```js
-assert('.list-group').toHave( function(expect) {
+component('.list-group').toHave( function(expect) {
   expect.to.be.tag('ul,ol');
   expect.to.containChild('.list-group-item');
 });
 
-assert('.list-group-item').toHave( function(expect) {
+component('.list-group-item').toHave( function(expect) {
   expect.to.be.tag('li');
   expect.to.descendant('.list-group');
 });
@@ -120,25 +120,25 @@ assert('.list-group-item').toHave( function(expect) {
 ```
 
 ```js
-assert('.panel').toHave( function(expect) {
+component('.panel').toHave( function(expect) {
   expect.to.containChild('.panel-body');
   expect.optional.classes('panel-primary', 'panel-success', 'panel-info', 'panel-warning', 'panel-danger');
   expect.optional.children('.panel-footer', '.panel-heading');
 });
 
-assert('.panel-heading').toHave( function(expect) {
+component('.panel-heading').toHave( function(expect) {
   expect.to.be.tag('div');
 }
 
-assert('.panel-body').toHave( function(expect) {
+component('.panel-body').toHave( function(expect) {
   expect.to.be.tag('div');
 }
 
-assert('.panel-body, .panel-footer, .panel-heading').toHave( function(expect) {
+component('.panel-body, .panel-footer, .panel-heading').toHave( function(expect) {
   expect.to.be.descendant('.panel');
 }
 
-assert('.panel-danger').toHave( function(expect) {
+component('.panel-danger').toHave( function(expect) {
   // only an example ;)
   expect.to.be.deprecated();
 });
