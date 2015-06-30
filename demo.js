@@ -47,7 +47,7 @@
           multiple: true,
           animation: 'fade',
           delay: 200,
-          content: component.error.message,
+          content: comp.error.message,
           theme: 'tooltipster-punk',
           position: directions[i % 3]
         });
@@ -55,11 +55,11 @@
         $component.css('border', '2px solid #000');
 
         optionals = {};
-        if (component.obj.optional) {
-          optionals = component.obj.optional;
+        if (comp.obj.optional) {
+          optionals = comp.obj.optional;
         }
 
-        console.info("%c"+componentName+": \n\n"+component.error.message, "color: blue;", " \n\n", {obj: component.obj, optionals: optionals}, "\n\n");
+        console.info("%c"+componentName+": \n\n"+comp.error.message, "color: blue;", " \n\n", {obj: comp.obj, optionals: optionals}, "\n\n");
       }
     }
   }
