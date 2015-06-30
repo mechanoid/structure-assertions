@@ -4,7 +4,8 @@
   "description": "component structure assertions to validate the html interface usage of frontend components",
   "main": "structure-assertions.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test",
+    "gulp": "gulp"
   },
   "author": "Falk Hoppe <falkhoppe81@gmail.com>",
   "license": "MIT",
