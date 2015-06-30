@@ -192,7 +192,5 @@ var component = (function(window){
   };
 
   // return assertion instance as lib entry
-  return function(selector){
-    return new Assert(selector);
-  };
+  return Assert;
 }(this));
