@@ -1,4 +1,6 @@
 [![npm version](https://badge.fury.io/js/structure-assertions.svg)](http://badge.fury.io/js/structure-assertions)
+[![Build Status](https://travis-ci.org/mechanoid/structure-assertions.svg?branch=master)](https://travis-ci.org/mechanoid/structure-assertions)
+
 # structure assertions
 
 ## introduction
