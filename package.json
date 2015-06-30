@@ -15,6 +15,7 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-util": "^3.0.6",
+    "jquery": "^2.1.4",
     "karma": "^0.12.37",
     "karma-phantomjs-launcher": "^0.2.0",
     "karma-qunit": "^0.1.4",
