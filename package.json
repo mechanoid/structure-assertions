@@ -10,7 +10,7 @@
   "author": "Falk Hoppe <falkhoppe81@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "expect-dom": "^1.0.0"
+    "chai": "^3.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
@@ -20,6 +20,7 @@
     "karma-phantomjs-launcher": "^0.2.0",
     "karma-qunit": "^0.1.4",
     "phantomjs": "^1.9.17",
-    "qunitjs": "^1.18.0"
+    "qunitjs": "^1.18.0",
+    "webpack": "^1.10.1"
   }
 }
