@@ -137,7 +137,7 @@
 
 	  // default callback for reacting on assertion errors
 	  Assert.errorCallback = function(error) {
-	    console.info(this.componentName + "%c" + error, "color: #aaa;", this._obj);
+	    console.info("%c" + error, "color: #aaa;", this._obj);
 	  };
 
 	  // setter for the errorCallback
