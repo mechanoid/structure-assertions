@@ -7,7 +7,7 @@
   component('.awesome-component').assert( function(expect) {
       expect.to.have.an.attribute("data-awesomeness");
 
-      expect.to.may.have.class('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
+      expect.to.may.have.any.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
       expect.to.may.have.attribute('data-awesome');
   });
 

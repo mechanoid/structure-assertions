@@ -29,11 +29,10 @@ have the library available in headless browser scenarios and similar available.
 
 ### browser
 
-See that you have expect.js, expect-dom.js and the structure-assertions.js libs available either via `bower` or `npm`:
+See that you have chai.js and the structure-assertions.js libs available either via `bower` or `npm`:
 
 ```html
-<script src="./node_modules/expect-dom/vendor/expect.js"></script>
-<script src="./node_modules/expect-dom/expect-dom.js"></script>
+<script src="./node_modules/chai/chai.js"></script>
 <script src="./structure-assertions.js"></script>
 ```
 
@@ -50,11 +49,11 @@ You may add some component assertions to your page (usually only in dev or test 
 
 ```js
 component('.awesome-component').assert( function(expect) {
-  expect.to.have.attr("data-awesomeness");
+  expect.to.have.an.attribute("data-awesomeness", "true");
 });
 
 component('.awesome-component-content').assert( function(expect) {
-  expect.to.be.descendant('.awesome-component');
+  expect.to.be.a.descendantOf('.awesome-component');
 }
 ```
 
@@ -75,7 +74,7 @@ But the real match may be the assertion definition itself, where it may be a pro
 
 ```js
 component('.awesome-component').assert( function(expect) {
-    expect.optional.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
+    expect.to.may.have.any.class('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
     expect.optional.attributes('data-awesome');
 });
 ```

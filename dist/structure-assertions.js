@@ -318,6 +318,21 @@
 	      );
 	    });
 
+	    // TODO: implement multiple classes case in detail with matcher for multiple classes
+	    _chai.Assertion.addMethod('classes', function () {
+	      var messageBegin;
+
+	      if (utils.flag(this, 'isOptional')) {
+	        messageBegin = 'element may have any classes of ';
+	      }
+
+	      this.assert(
+	          false
+	        , messageBegin + '"' + Array.prototype.join.call(arguments) + '"'
+	        , 'does not make no sense in any way for optionals o_O'
+	      );
+	    });
+
 	    _chai.Assertion.addMethod('attribute', function (attribute, value) {
 	      var messageBegin = 'expected element to have an attribute ';
 
