@@ -62,7 +62,7 @@ component('.awesome-component-content').assert( function(expect) {
 > As shown in the examble above there may be components that may have certain children,
 > but in case the component would work without such a child component, we should
 > declare them as optional by reversing the relationship constraint in declaring the
-> child component to have to be a descendant to its parent compoent.
+> child component to have to be a descendant to its parent component.
 
 #### optionals
 
