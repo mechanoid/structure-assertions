@@ -39,7 +39,7 @@ See that you have chai.js and the structure-assertions.js libs available either 
 
 ### demo
 
-have a look at the [demo](https://mechanoid.github.io/structure-assertions/demo.html) page,
+have a look at the [demo](https://mechanoid.github.io/structure-assertions/example/demo.html) page,
 with assertion errors highlighted with tooltipster - tooltips.
 
 ### examples
