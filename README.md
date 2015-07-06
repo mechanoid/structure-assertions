@@ -109,6 +109,8 @@ component('.example').assert(function(expect) {
 
 **parent dependency**
 
+It may be important that a sub component lies directly inside of its parent component,
+and if it is like that, you may specify it now with the `descendant` or `descendantOf` assertion.
 
 ```js
 component('.example').assert(function(expect) {
