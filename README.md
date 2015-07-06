@@ -30,11 +30,21 @@ have the library available in headless browser scenarios and similar available.
 
 ### browser
 
-See that you have chai.js and the structure-assertions.js libs available via `npm` or raw download from github:
+See that you have chai.js and the structure-assertions.js libs available via `npm`, `bower` or raw download from github:
+
+```sh
+npm install --save-dev chai
+npm install --save-dev structure-assertions
+
+# or
+
+bower install --save-dev chai
+bower install --save-dev structure-assertions
+```
 
 ```html
 <script src="./node_modules/chai/chai.js"></script>
-<script src="./structure-assertions.js"></script>
+<script src="./node_modules/structure-assertions/dist/structure-assertions.js"></script>
 ```
 
 ---
