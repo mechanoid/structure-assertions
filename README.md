@@ -155,7 +155,7 @@ But the real match may be the assertion definition itself, where it may be a pro
 ```js
 component('.awesome-component').assert( function(expect) {
     expect.to.may.have.any.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
-    expect.to.may.have.attribute('data-awesome');
+    expect.to.may.have.an.attribute('data-awesome');
 });
 ```
 
@@ -180,12 +180,12 @@ that may look like that.
 ```js
 component('.list-group').assert( function(expect) {
   expect.to.be.tag('ul,ol');
-  expect.to.have.child('.list-group-item');
+  expect.to.have.a.child('.list-group-item');
 });
 
 component('.list-group-item').assert( function(expect) {
   expect.to.be.tag('li');
-  expect.to.be.descendantOf('.list-group');
+  expect.to.be.a.descendantOf('.list-group');
 });
 ```
 
@@ -202,7 +202,7 @@ component('.list-group-item').assert( function(expect) {
 
 ```js
 component('.panel').assert( function(expect) {
-  expect.to.have.child('.panel-body');
+  expect.to.have.a.child('.panel-body');
   expect.to.may.have.any.classes('panel-primary', 'panel-success', 'panel-info', 'panel-warning', 'panel-danger');
 });
 
@@ -215,7 +215,7 @@ component('.panel-body').assert( function(expect) {
 }
 
 component('.panel-body, .panel-footer, .panel-heading').assert( function(expect) {
-  expect.to.be.descendantOf('.panel');
+  expect.to.be.a.descendantOf('.panel');
 }
 
 component('.panel-danger').assert( function(expect) {
