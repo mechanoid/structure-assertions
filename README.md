@@ -144,8 +144,11 @@ to adjust its default behaviour.
 
 ```js
 component('.example').assert(function(expect) {
-  // example must have a direct parent specified by the selector or the world is gonna end.
+  // example may have the class example-danger
   expect.to.may.have.a.class('example-danger');
+
+  // and example may have the class example-warn
+  expect.to.may.have.a.class('example-warn');
 });
 ```
 
@@ -153,8 +156,21 @@ There is also a method to define multiple additional attributes at once.
 
 ```js
 component('.example').assert(function(expect) {
-  // example must have a direct parent specified by the selector or the world is gonna end.
+  // example may have the classes example-danger, example-warn or example-success
   expect.to.may.have.any.classes('example-danger', 'example-warn', 'example-success');
+});
+```
+
+**optional attribute**
+
+Similar important to change a components behaviour may be to give it some additional attributes,
+like for example `data-remote`, which some may recognize from Ruby on Rails' form-helper,
+which makes forms to send its data via ajax.
+
+```js
+component('.example').assert(function(expect) {
+  // and example may have the attribute data-remote
+  expect.to.may.have.an.attribute('data-remote');
 });
 ```
 
