@@ -119,6 +119,45 @@ component('.example').assert(function(expect) {
 });
 ```
 
+
+
+#### declaring the 'optionals' for a component
+
+While many assumptions are mandatory for a component, some are not.
+
+And yes, it does not really make sense to define assertions for things,
+that may, or may not be, the structure assertions provide a nice place,
+to document things like that.
+
+But because of the optional character of that, the default implementation
+of the callback of 'what to do with optionals' is empty.
+
+But you may provide a callback that kicks in for every optional assertion,
+that is defined. With this in your toolkit you  may for example create tooltips,
+that give hints about additional usage of a component.
+
+
+**optional class(es)**
+
+One of the main case may be to specify alternative classes that can be applied to a component,
+to adjust its default behaviour.
+
+```js
+component('.example').assert(function(expect) {
+  // example must have a direct parent specified by the selector or the world is gonna end.
+  expect.to.may.have.a.class('example-danger');
+});
+```
+
+There is also a method to define multiple additional attributes at once.
+
+```js
+component('.example').assert(function(expect) {
+  // example must have a direct parent specified by the selector or the world is gonna end.
+  expect.to.may.have.any.classes('example-danger', 'example-warn', 'example-success');
+});
+```
+
 ---
 
 ### examples
