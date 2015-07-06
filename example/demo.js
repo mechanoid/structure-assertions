@@ -18,18 +18,18 @@
   });
 
   component('.awesome-component').assert( function(expect) {
-    expect.to.have.attr("data-awesomeness");
+      expect.to.have.an.attribute("data-awesomeness");
 
-    expect.optional.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
-    expect.optional.attributes('data-awesome');
+      expect.to.may.have.any.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
+      expect.to.may.have.attribute('data-awesome');
   });
 
   component('.awesome-component-header').assert( function(expect) {
-      expect.to.be.descendant(".awesome-component");
+      expect.to.be.a.descendantOf(".awesome-component");
   });
 
   component('.awesome-component-action').assert( function(expect) {
-    expect.to.be.descendant(".awesome-component-content");
+    expect.to.be.a.descendantOf(".awesome-component-content");
     expect.to.be.tag('button');
   });
 
