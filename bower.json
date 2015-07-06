@@ -13,7 +13,14 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "gulpfile.js",
+    "karma.conf.js",
+    "package.json",
+    ".gitignore",
+    ".travis.yml",
+    "example/demo.html",
+    "example/demo.js",
+    "tests/*"
   ],
   "dependencies": {
     "chai": "~3.0.0"
