@@ -9,6 +9,10 @@
   },
   "author": "Falk Hoppe <falkhoppe81@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mechanoid/structure-assertions.git"
+  },
   "dependencies": {
     "chai": "^3.0.0"
   },
