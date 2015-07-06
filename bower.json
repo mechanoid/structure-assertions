@@ -1,6 +1,6 @@
 {
   "name": "structure-assertions",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/mechanoid/structure-assertions",
   "authors": [
     "Falk Hoppe <falkhoppe81@gmail.com>"
@@ -9,18 +9,16 @@
   "main": "dist/structure-assertions.js",
   "license": "MIT",
   "ignore": [
-    "**/.*",
     "node_modules",
     "bower_components",
-    "test",
+    "example",
+    "tests",
+    "src",
     "gulpfile.js",
     "karma.conf.js",
     "package.json",
     ".gitignore",
-    ".travis.yml",
-    "example/demo.html",
-    "example/demo.js",
-    "tests/*"
+    ".travis.yml"
   ],
   "dependencies": {
     "chai": "~3.0.0"
