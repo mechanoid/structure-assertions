@@ -30,17 +30,82 @@ have the library available in headless browser scenarios and similar available.
 
 ### browser
 
-See that you have chai.js and the structure-assertions.js libs available either via `bower` or `npm`:
+See that you have chai.js and the structure-assertions.js libs available via `npm` or raw download from github:
 
 ```html
 <script src="./node_modules/chai/chai.js"></script>
 <script src="./structure-assertions.js"></script>
 ```
 
+---
+
 ### demo
 
 have a look at the [demo](https://mechanoid.github.io/structure-assertions/example/demo.html) page,
 with assertion errors highlighted with tooltipster - tooltips.
+
+---
+
+### assertion api
+
+#### declaring a frontend component and its assertions
+
+basically the structure assertions library offers the `component` function, which defines a component and offers the ability to specify its assertions.
+
+```js
+# @param selector [String] - css selector, at the moment also used as the component identifier
+component(selector)
+```
+
+```js
+// @param expect - chai assertion of a specific dom element
+var assertions = function(expect) {
+  /* ... */
+};
+
+# @param assertions [Function] - function callback
+component('.example').assert(assertions);
+```
+
+
+
+#### declaring the 'must haves' for a component
+
+**class dependency**
+
+Declare a class the component must have. Think of components, that make only sense when combined with other components.
+
+```js
+component('.hilarious').assert(function(expect) {
+  expect.to.have.class('awesome');
+});
+```
+
+**attribute dependency**
+
+Attribute dependencies are for example very helpful to assert that a component is aligned to the js code, so that functions can work properly.
+For sure that does not replace proper error handling in your javascript code, but think of structure assertions as a possibility to test your current html code against structure assertions of later versions of a central frontend library.
+
+```js
+component('.tutorial').assert(function(expect) {
+  expect.to.have.attribute('data-message', 'Hello, World!');
+});
+```
+
+**child dependency**
+
+A child assertion is a strong assumption, that should be used only in rare cases. But sometimes it is mandatory, that a component has to have a certain child, to have it work as expected.
+
+But please consider that HTML components should be as flexible as possible, so it may make more sense to use the `descendantOf`-assertion
+in favor of the `child`-assertion when possible.
+
+```js
+component('.example').assert(function(expect) {
+  expect.to.have.attribute('data-message', 'Hello, World!');
+});
+```
+
+---
 
 ### examples
 
