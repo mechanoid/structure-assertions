@@ -81,7 +81,7 @@
 	  // including dsl method wrappers for the optional expect rules.
 
 	  // @param component [dom] - dom object
-	  Structure = function(component) {
+	  Structure = function(selector, component) {
 	    // memoize the actual dom node
 	    this.component = component;
 	    // create initial expect component to register assertions on
@@ -94,6 +94,8 @@
 	    this.expect.withOptionalsCallback(function(error){
 	      Assert.optionalsCallback.call(this, error);
 	    });
+
+	    this.expect.componentName = selector;
 	  };
 
 	  // constructor method for breaking up dom object occurances in single structure components,
@@ -111,7 +113,7 @@
 
 	    for (i = 0; i < components.length; i += 1) {
 	      component = components[i];
-	      structure = new Structure(component);
+	      structure = new Structure(selector, component);
 	      this.structures.push(structure);
 	    }
 	  };

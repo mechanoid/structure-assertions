@@ -1,4 +1,4 @@
-/*jslint white: true, browser: true, devel: true */
+/*jslint white: true, browser: true, devel: true, nomen: true */
 /*globals $, component */
 
 (function(){
@@ -9,12 +9,12 @@
   componentAssertions = {};
   directions = ['top', 'right', 'bottom', 'left'];
 
-  component.onError(function(obj, error){
-    if (componentAssertions[obj.componentName] === undefined) {
-      componentAssertions[obj.componentName] = [];
+  component.onError(function(error){
+    if (componentAssertions[this.componentName] === undefined) {
+      componentAssertions[this.componentName] = [];
     }
 
-    componentAssertions[obj.componentName].push({obj: obj, error: error});
+    componentAssertions[this.componentName].push({obj: this._obj, error: error});
   });
 
   component('.awesome-component').assert( function(expect) {
