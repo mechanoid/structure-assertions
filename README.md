@@ -53,7 +53,7 @@ with assertion errors highlighted with tooltipster - tooltips.
 basically the structure assertions library offers the `component` function, which defines a component and offers the ability to specify its assertions.
 
 ```js
-# @param selector [String] - css selector, at the moment also used as the component identifier
+// @param selector [String] - css selector, at the moment also used as the component identifier
 component(selector)
 ```
 
@@ -77,6 +77,7 @@ Declare a class the component must have. Think of components, that make only sen
 
 ```js
 component('.hilarious').assert(function(expect) {
+  // will cry out loud in case the component has no class awesome
   expect.to.have.class('awesome');
 });
 ```
@@ -88,7 +89,8 @@ For sure that does not replace proper error handling in your javascript code, bu
 
 ```js
 component('.tutorial').assert(function(expect) {
-  expect.to.have.attribute('data-message', 'Hello, World!');
+  // will moan about a missing attribute data-message or when it is not of the given value.
+  expect.to.have.an.attribute('data-message', 'Hello, World!');
 });
 ```
 
@@ -101,7 +103,17 @@ in favor of the `child`-assertion when possible.
 
 ```js
 component('.example').assert(function(expect) {
-  expect.to.have.attribute('data-message', 'Hello, World!');
+  expect.to.have.a.child('.example-child');
+});
+```
+
+**parent dependency**
+
+
+```js
+component('.example').assert(function(expect) {
+  // example must have a direct parent specified by the selector or the world is gonna end.
+  expect.to.be.a.descendantOf('.mother-of-all-examples');
 });
 ```
 
