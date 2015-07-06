@@ -102,7 +102,7 @@ window.component = (function(){
 
   // default callback for reacting on assertion errors
   Assert.optionalsCallback = function(error) {
-    // console.info("%c" + error, "color: #81acd0;", this._obj);
+    console.info("%c" + error, "color: #81acd0;", this._obj);
   };
 
   // setter for the errorCallback

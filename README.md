@@ -1,3 +1,4 @@
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 [![npm version](https://badge.fury.io/js/structure-assertions.svg)](http://badge.fury.io/js/structure-assertions)
 [![Build Status](https://travis-ci.org/mechanoid/structure-assertions.svg?branch=master)](https://travis-ci.org/mechanoid/structure-assertions)
 
@@ -74,8 +75,8 @@ But the real match may be the assertion definition itself, where it may be a pro
 
 ```js
 component('.awesome-component').assert( function(expect) {
-    expect.to.may.have.any.class('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
-    expect.optional.attributes('data-awesome');
+    expect.to.may.have.any.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
+    expect.to.may.have.attribute('data-awesome');
 });
 ```
 
@@ -100,12 +101,12 @@ that may look like that.
 ```js
 component('.list-group').assert( function(expect) {
   expect.to.be.tag('ul,ol');
-  expect.to.containChild('.list-group-item');
+  expect.to.have.child('.list-group-item');
 });
 
 component('.list-group-item').assert( function(expect) {
   expect.to.be.tag('li');
-  expect.to.descendant('.list-group');
+  expect.to.be.descendantOf('.list-group');
 });
 ```
 
@@ -122,9 +123,8 @@ component('.list-group-item').assert( function(expect) {
 
 ```js
 component('.panel').assert( function(expect) {
-  expect.to.containChild('.panel-body');
-  expect.optional.classes('panel-primary', 'panel-success', 'panel-info', 'panel-warning', 'panel-danger');
-  expect.optional.children('.panel-footer', '.panel-heading');
+  expect.to.have.child('.panel-body');
+  expect.to.may.have.any.classes('panel-primary', 'panel-success', 'panel-info', 'panel-warning', 'panel-danger');
 });
 
 component('.panel-heading').assert( function(expect) {
@@ -136,7 +136,7 @@ component('.panel-body').assert( function(expect) {
 }
 
 component('.panel-body, .panel-footer, .panel-heading').assert( function(expect) {
-  expect.to.be.descendant('.panel');
+  expect.to.be.descendantOf('.panel');
 }
 
 component('.panel-danger').assert( function(expect) {
@@ -171,10 +171,6 @@ THE SOFTWARE.
 
 ### 3rd-party
 
-Heavily borrows from
+Internally the structure-assertions library relies heavily on:
 
-[expect-dom](https://github.com/kevindente/expect-dom) by Kevin Dente - MIT,
-
-[expect.js](https://github.com/Automattic/expect.js) by Guillermo Rauch - MIT
-
-and [should.js](https://github.com/shouldjs/should.js) by TJ Holowaychuck - MIT
+[Chai](http://chaijs.com/) by Jake Luer <jake@alogicalparadox.com>
