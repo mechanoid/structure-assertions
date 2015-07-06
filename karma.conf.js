@@ -18,9 +18,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'node_modules/jquery/dist/jquery.js',
-      'node_modules/expect-dom/vendor/expect.js',
-      'node_modules/expect-dom/expect-dom.js',
-      'structure-assertions.js',
+      'node_modules/chai/chai.js',
+      'dist/structure-assertions.js',
       'tests/**/*.js'
     ],
 

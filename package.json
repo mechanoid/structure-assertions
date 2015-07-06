@@ -1,6 +1,6 @@
 {
   "name": "structure-assertions",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "component structure assertions to validate the html interface usage of frontend components",
   "main": "structure-assertions.js",
   "scripts": {
@@ -10,9 +10,18 @@
   "author": "Falk Hoppe <falkhoppe81@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "expect-dom": "^1.0.0",
-    "tooltipster": "^1.0.9"
+    "tooltipster": "^1.0.9",
+    "chai": "^3.0.0"
   },
   "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6",
+    "jquery": "^2.1.4",
+    "karma": "^0.12.37",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "karma-qunit": "^0.1.4",
+    "phantomjs": "^1.9.17",
+    "qunitjs": "^1.18.0",
+    "webpack": "^1.10.1"
   }
 }

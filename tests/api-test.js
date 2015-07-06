@@ -36,7 +36,7 @@
 
     current = component('.fubar');
     current.assert(function(expect) {
-      expect.to.be();
+      expect.to.be.tag('div');
     });
 
     assert.strictEqual(current.structures.length, 2, "should have method to configure assertions per component");

@@ -1,4 +1,7 @@
-[![Stories in Ready](https://badge.waffle.io/mechanoid/structure-assertions.png?label=ready&title=Ready)](https://waffle.io/mechanoid/structure-assertions)
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/mechanoid/structure-assertions#credits)
+[![npm version](https://badge.fury.io/js/structure-assertions.svg)](http://badge.fury.io/js/structure-assertions)
+[![Build Status](https://travis-ci.org/mechanoid/structure-assertions.svg?branch=master)](https://travis-ci.org/mechanoid/structure-assertions)
+
 # structure assertions
 
 ## introduction
@@ -27,11 +30,10 @@ have the library available in headless browser scenarios and similar available.
 
 ### browser
 
-See that you have expect.js, expect-dom.js and the structure-assertions.js libs available either via `bower` or `npm`:
+See that you have chai.js and the structure-assertions.js libs available either via `bower` or `npm`:
 
 ```html
-<script src="./node_modules/expect-dom/vendor/expect.js"></script>
-<script src="./node_modules/expect-dom/expect-dom.js"></script>
+<script src="./node_modules/chai/chai.js"></script>
 <script src="./structure-assertions.js"></script>
 ```
 
@@ -48,11 +50,11 @@ You may add some component assertions to your page (usually only in dev or test 
 
 ```js
 component('.awesome-component').assert( function(expect) {
-  expect.to.have.attr("data-awesomeness");
+  expect.to.have.an.attribute("data-awesomeness", "true");
 });
 
 component('.awesome-component-content').assert( function(expect) {
-  expect.to.be.descendant('.awesome-component');
+  expect.to.be.a.descendantOf('.awesome-component');
 }
 ```
 
@@ -60,7 +62,7 @@ component('.awesome-component-content').assert( function(expect) {
 > As shown in the examble above there may be components that may have certain children,
 > but in case the component would work without such a child component, we should
 > declare them as optional by reversing the relationship constraint in declaring the
-> child component to have to be a descendant to its parent compoent.
+> child component to have to be a descendant to its parent component.
 
 #### optionals
 
@@ -73,8 +75,8 @@ But the real match may be the assertion definition itself, where it may be a pro
 
 ```js
 component('.awesome-component').assert( function(expect) {
-    expect.optional.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
-    expect.optional.attributes('data-awesome');
+    expect.to.may.have.any.classes('data-awesome-default', 'data-awesome-danger', 'data-awesome-warn');
+    expect.to.may.have.attribute('data-awesome');
 });
 ```
 
@@ -99,12 +101,12 @@ that may look like that.
 ```js
 component('.list-group').assert( function(expect) {
   expect.to.be.tag('ul,ol');
-  expect.to.containChild('.list-group-item');
+  expect.to.have.child('.list-group-item');
 });
 
 component('.list-group-item').assert( function(expect) {
   expect.to.be.tag('li');
-  expect.to.descendant('.list-group');
+  expect.to.be.descendantOf('.list-group');
 });
 ```
 
@@ -121,9 +123,8 @@ component('.list-group-item').assert( function(expect) {
 
 ```js
 component('.panel').assert( function(expect) {
-  expect.to.containChild('.panel-body');
-  expect.optional.classes('panel-primary', 'panel-success', 'panel-info', 'panel-warning', 'panel-danger');
-  expect.optional.children('.panel-footer', '.panel-heading');
+  expect.to.have.child('.panel-body');
+  expect.to.may.have.any.classes('panel-primary', 'panel-success', 'panel-info', 'panel-warning', 'panel-danger');
 });
 
 component('.panel-heading').assert( function(expect) {
@@ -135,7 +136,7 @@ component('.panel-body').assert( function(expect) {
 }
 
 component('.panel-body, .panel-footer, .panel-heading').assert( function(expect) {
-  expect.to.be.descendant('.panel');
+  expect.to.be.descendantOf('.panel');
 }
 
 component('.panel-danger').assert( function(expect) {
@@ -170,10 +171,6 @@ THE SOFTWARE.
 
 ### 3rd-party
 
-Heavily borrows from
+Internally the structure-assertions library relies heavily on:
 
-[expect-dom](https://github.com/kevindente/expect-dom) by Kevin Dente - MIT,
-
-[expect.js](https://github.com/Automattic/expect.js) by Guillermo Rauch - MIT
-
-and [should.js](https://github.com/shouldjs/should.js) by TJ Holowaychuck - MIT
+[Chai](http://chaijs.com/) by Jake Luer <jake@alogicalparadox.com>
