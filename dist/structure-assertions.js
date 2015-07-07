@@ -304,7 +304,7 @@
 	    _chai.Assertion.addMethod('class', function (className) {
 	      var regexp, messageBegin;
 
-	      regexp = new RegExp("\\b"+className+"\\b");
+	      regexp = new RegExp("(?:(?![-])\\b"+className+"\\b(?![\\w-]))");
 	      messageBegin = 'expected element to have a class ';
 
 	      if (utils.flag(this, 'isOptional')) {

@@ -15,10 +15,14 @@
     var before = component.onError;
 
     component.onError(function(){
-      func();
+      func.apply(this, arguments);
       component.onError = before;
     });
   };
+
+  QUnit.testDone(function(){
+    $('body').html('');
+  });
 
   QUnit.test("test if component root function is available", function(assert) {
     assert.strictEqual((typeof component), "function", "should provide a function to encapsulate components");
@@ -43,23 +47,40 @@
   });
 
   QUnit.test("test if deprecated method is available", function(assert) {
-    var current, done, deprecated;
-    done = assert.async();
-
-    overwriteOnError(function(){
-      deprecated = true;
-      assert.ok(deprecated, "nodes that are deprecated but still available in dom should trigger this assertion");
-      done();
-      return false;
+    var results = [];
+    overwriteOnError(function(error){
+      results.push(error.message);
     });
-
 
     $('body').append($('<div class="fabula" />'));
 
-    current = component('.fabula');
-
-    current.assert(function(expect) {
+    component('.fabula').assert(function(expect) {
       expect.to.be.deprecated();
     });
+
+    assert.strictEqual(results.indexOf('expected element to not be used anymore'), 0, "nodes that are deprecated but still available in dom should be marked as erroneous");
+  });
+
+  QUnit.test("test class assertion to match exactly the class name", function(assert) {
+    var results;
+    results = [];
+
+    $('body').append($('<div class="fabula test fast-hyphen" />'));
+
+    overwriteOnError(function(error){
+      results.push(error.message);
+    });
+
+    component('.fabula').assert(function(expect) {
+      expect.to.have.a.class('test');
+      expect.to.have.a.class('fast');
+      expect.to.have.a.class('fast-hyphen');
+      expect.to.have.a.class('hyphen');
+    });
+
+    assert.strictEqual(results.indexOf('expected element to have a class test'), -1, "class test should be found");
+    assert.strictEqual(results.indexOf('expected element to have a class fast'), 0, "class fast should be found, because it is followed by a hyphen");
+    assert.strictEqual(results.indexOf('expected element to have a class fast-hyphen'), -1, "class fast-hyphen instead should be found");
+    assert.strictEqual(results.indexOf('expected element to have a class hyphen'), -1, "class hyphen again should not be found, because prepended by a hyphen");
   });
 }());
