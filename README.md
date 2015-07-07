@@ -184,6 +184,20 @@ component('.example').assert(function(expect) {
 });
 ```
 
+#### other helpful declarations
+
+**deprecation**
+
+components of some kind may be not maintained anymore, may have lost its purpose or are just replaced by
+another component. In such cases it may make sense to flag such component usage as deprecated.
+
+```js
+component('.old-example').assert(function(expect) {
+  // just blame this kind of stuff!
+  expect.to.be.deprecated('');
+});
+```
+
 ---
 
 ### examples
