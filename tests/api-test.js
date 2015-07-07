@@ -77,10 +77,10 @@
       expect.to.have.a.class('fast-hyphen');
       expect.to.have.a.class('hyphen');
     });
-
+    
     assert.strictEqual(results.indexOf('expected element to have a class test'), -1, "class test should be found");
     assert.strictEqual(results.indexOf('expected element to have a class fast'), 0, "class fast should be found, because it is followed by a hyphen");
     assert.strictEqual(results.indexOf('expected element to have a class fast-hyphen'), -1, "class fast-hyphen instead should be found");
-    assert.strictEqual(results.indexOf('expected element to have a class hyphen'), -1, "class hyphen again should not be found, because prepended by a hyphen");
+    assert.strictEqual(results.indexOf('expected element to have a class hyphen'), 1, "class hyphen again should not be found, because prepended by a hyphen");
   });
 }());

@@ -192,10 +192,20 @@
 	// THE SOFTWARE.
 	module.exports = (function(chai) {
 	  "use strict";
-
-	  function beginsWithVowel() {
+	  var beginsWithVowel, hasClass;
+	  beginsWithVowel = function() {
 	    return (['a', 'e', 'i', 'o', 'u'].indexOf(this[0].toLowerCase()) !== -1);
-	  }
+	  };
+
+	  hasClass= function(selector) {
+	    var classWithWordBoundary = " " + selector + " ";
+
+	    if ((" " + this.className + " ").replace(/[\n\t]/g, " ").indexOf(classWithWordBoundary) > -1) {
+	      return true;
+	    }
+
+	    return false;
+	  };
 
 	  chai.use(function (_chai, utils) {
 	    utils.overwriteMethod(chai.Assertion.prototype, 'assert', function (_super) {
@@ -302,9 +312,8 @@
 	    _chai.Assertion.addMethod('descendantOf', _chai.Assertion.prototype.descendant);
 
 	    _chai.Assertion.addMethod('class', function (className) {
-	      var regexp, messageBegin;
+	      var messageBegin;
 
-	      regexp = new RegExp("(?:(?![-])\\b"+className+"\\b(?![\\w-]))");
 	      messageBegin = 'expected element to have a class ';
 
 	      if (utils.flag(this, 'isOptional')) {
@@ -312,7 +321,7 @@
 	      }
 
 	      this.assert(
-	          this._obj.className.match(regexp)
+	          hasClass.call(this._obj, className)
 	        , messageBegin + className
 	        , 'expected element to not have a class "' + className + '"'
 	      );
