@@ -14,7 +14,6 @@
     "url": "git://github.com/mechanoid/structure-assertions.git"
   },
   "dependencies": {
-    "tooltipster": "^1.0.9",
     "chai": "^3.0.0"
   },
   "devDependencies": {
