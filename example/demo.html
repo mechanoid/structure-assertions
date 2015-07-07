@@ -3,51 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <title>Component Framework</title>
-  <link rel="stylesheet" type="text/css" href="../node_modules/tooltipster/css/tooltipster.css" />
-  <link rel="stylesheet" type="text/css" href="../node_modules/tooltipster/css/themes/tooltipster-punk.css" />
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
-    .errors {
-      border: 3px solid red;
-      background: #fee;
-
-      color: red;
-      display: none;
-    }
-
-    .error {
-      padding: .3em;
-    }
-
-    .awesome-component {
-      padding: 1em;
-      margin-bottom: 2em;
-      background-color: #dedede;
-    }
+    .section--center { max-width: 860px; margin-bottom: 2em;}
   </style>
+
 </head>
-<body>
-  <ul class="errors">
-  </ul>
+<body class="mdl-base  mdl-color--grey-100 mdl-color-text--grey-900">
+  <div class="mdl-layout mdl-js-layout">
+    <ul class="errors">
+    </ul>
 
-  <section class="awesome-component" data-awesomeness="fubar">
-    <header class="awesome-component-header">
-      <h1>Awesome Component v0.0.2</h1>
-    </header>
-    <div class="awesome-component-content">
-      <button class="awesome-component-action">Do Something</button>
-    </div>
-    <footer class="awesome-component-footer"></footer>
-  </section>
+    <main class="mdl-layout__content">
+        <header class="section--center mdl-grid mdl-grid--no-spacing">
+          <h1 class="mdl-typography--display-3">fubar</h1>
+        </header>
 
-  <section class="awesome-component">
-    <header class="awesome-component-header">
-      <h1>Awesome Component v0.0.1</h1>
-    </header>
-    <div class="awesome-component-content">
-      <a class="awesome-component-action" href="#">Do Something</a>
-      <a class="awesome-component-action big" href="#">Do Something Big</a>
-    </div>
-  </section>
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Material Design Card V0.0.2</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Mauris sagittis pellentesque lacus eleifend lacinia...
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Get Started
+              </a>
+            </div>
+            <div class="mdl-card__menu">
+              <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons">share</i>
+              </button>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card mdl-cell--12-col">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Material Design Card V0.0.1</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Mauris sagittis pellentesque lacus eleifend lacinia...
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Get Started
+              </a>
+            </div>
+            <div class="mdl-card__menu">
+              <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="">
+                <i class="material-icons">share</i>
+              </a>
+            </div>
+          </div>
+        </section>
+    </main>
+  </div>
 
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="../node_modules/tooltipster/js/jquery.tooltipster.min.js"></script>
