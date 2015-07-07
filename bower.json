@@ -1,0 +1,26 @@
+{
+  "name": "structure-assertions",
+  "version": "0.1.10",
+  "homepage": "https://github.com/mechanoid/structure-assertions",
+  "authors": [
+    "Falk Hoppe <falkhoppe81@gmail.com>"
+  ],
+  "description": "component structure assertions to validate the html interface usage of frontend components",
+  "main": "dist/structure-assertions.js",
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "example",
+    "tests",
+    "src",
+    "gulpfile.js",
+    "karma.conf.js",
+    "package.json",
+    ".gitignore",
+    ".travis.yml"
+  ],
+  "dependencies": {
+    "chai": "~3.0.0"
+  }
+}

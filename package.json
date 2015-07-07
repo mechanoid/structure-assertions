@@ -1,6 +1,6 @@
 {
   "name": "structure-assertions",
-  "version": "0.0.4",
+  "version": "0.1.10",
   "description": "component structure assertions to validate the html interface usage of frontend components",
   "main": "structure-assertions.js",
   "scripts": {
@@ -9,6 +9,10 @@
   },
   "author": "Falk Hoppe <falkhoppe81@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mechanoid/structure-assertions.git"
+  },
   "dependencies": {
     "tooltipster": "^1.0.9",
     "chai": "^3.0.0"
