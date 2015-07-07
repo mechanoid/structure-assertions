@@ -87,12 +87,12 @@
   QUnit.test("test attribute assertion", function(assert) {
     var results = [];
 
-    $('body').append($('<div class="componet-with-attribute" data-test="true" />'));
+    $('body').append($('<div class="component-with-attribute" data-test="true" />'));
 
     overwriteOnError(function(error){
       results.push(error.message);
     });
-    component('.componet-with-attribute').assert(function(expect) {
+    component('.component-with-attribute').assert(function(expect) {
       expect.to.have.an.attribute('data-test');
       expect.to.have.an.attribute('data-not-there');
       expect.to.have.an.attribute('data-test', false);
@@ -101,5 +101,23 @@
     assert.strictEqual(results.indexOf('expected element to have an attribute "data-test"'), -1, "data-test should be found");
     assert.strictEqual(results.indexOf('expected element to have an attribute "data-not-there"'), 0, "data-not-there should not be found");
     assert.strictEqual(results.indexOf('expected element to have an attribute "data-test" with value: "false"'), 1, "data-test should have had value true, but has false");
+  });
+
+  QUnit.test("test that may is doing nothing, when included, to signal optional classes and attributes", function(assert) {
+    var results = [];
+
+    $('body').append($('<div class="componet-with-optionals" />'));
+
+    overwriteOnError(function(error){
+      results.push(error.message);
+    });
+
+    component('.componet-with-optionals').assert(function(expect) {
+      expect.to.may.have.a.class('test');
+      expect.to.may.have.an.attribute('data-test');
+    });
+
+    assert.strictEqual(results.indexOf('expected element to have a class test'), -1, "there should be no error for the class");
+    assert.strictEqual(results.indexOf('expected element to have an attribute "data-test""'), -1, "there should be no error for the attribute");
   });
 }());
