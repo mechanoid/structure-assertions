@@ -13,13 +13,38 @@
 </head>
 <body class="mdl-base  mdl-color--grey-100 mdl-color-text--grey-900">
   <div class="mdl-layout mdl-js-layout">
-    <ul class="errors">
-    </ul>
 
     <main class="mdl-layout__content">
         <header class="section--center mdl-grid mdl-grid--no-spacing">
-          <h1 class="mdl-typography--display-3">fubar</h1>
+          <h1 class="mdl-typography--display-3">structure assertions demo</h1>
+
+
+          <p class="mdl-cell--12-col">Now we see actual two more or less similar implementations of a material design card,
+          as we found it described in the <a href="http://www.getmdl.io">mdl documentation</a>. In the first and either the second card,
+          we placed some errors, that should give you a hint about what <a href="https://github.com/mechanoid/structure-assertions">structure-assertions</a>
+          can do for you.</p>
+
+          <p class="mdl-cell--12-col">And yes, that is only a brief example with no really sense. But see just
+          try to see <a href="https://github.com/mechanoid/structure-assertions">structure-assertions</a> as a tool,
+          that users may use to understand your componens and keep their usage compliant to it.</p>
+
         </header>
+
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <h2 class="mdl-card__title-text">Material Design Card V0.0.1</h2>
+            <div class="mdl-card__supporting-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Mauris sagittis pellentesque lacus eleifend lacinia...
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Get Started
+              </button>
+            </div>
+          </div>
+        </section>
+
 
         <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
           <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -29,6 +54,8 @@
             <div class="mdl-card__supporting-text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Mauris sagittis pellentesque lacus eleifend lacinia...
+
+              <p class="so-deprecated">Deprecated subtext</p>
             </div>
             <div class="mdl-card__actions mdl-card--border">
               <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
@@ -36,35 +63,14 @@
               </a>
             </div>
             <div class="mdl-card__menu">
-              <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                <i class="material-icons">share</i>
-              </button>
-            </div>
-          </div>
-        </section>
-
-
-        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-          <div class="mdl-card mdl-cell--12-col">
-            <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text">Material Design Card V0.0.1</h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Mauris sagittis pellentesque lacus eleifend lacinia...
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                Get Started
-              </a>
-            </div>
-            <div class="mdl-card__menu">
-              <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="">
+              <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                 <i class="material-icons">share</i>
               </a>
             </div>
           </div>
         </section>
+
+
     </main>
   </div>
 

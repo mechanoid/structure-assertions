@@ -4,42 +4,43 @@
 (function(){
   "use strict";
 
-  // var componentAssertions, componentName, comp, $component, components, i, directions;
-  //
-  // componentAssertions = {};
-  // directions = ['top', 'right', 'bottom', 'left'];
+  var simpleUUID = function() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+  };
 
-  // component.onError(function(error){
-  //   if (componentAssertions[this.componentName] === undefined) {
-  //     componentAssertions[this.componentName] = [];
-  //   }
-  //
-  //   componentAssertions[this.componentName].push({obj: this._obj, error: error});
-  // });
+  component.onError(function(error){
+    var $elem = $(this._obj),
+        uuid = simpleUUID(),
+        $tooltip = $('<span class="mdl-tooltip mdl-tooltip--large" for="' + uuid + '" />').text(error.message);
+
+    $elem
+      .attr('id', uuid)
+      .css('border', '1px solid red')
+      .after($tooltip);
+
+  });
 
   component('.mdl-card').assert(function(expect) {
     expect.to.have.a.class('mdl-cell');
-    expect.to.have.a.class('mdl-cell--12-col');
   });
 
-  // for(componentName in componentAssertions) {
-  //   if(componentAssertions.hasOwnProperty(componentName)) {
-  //     components = componentAssertions[componentName];
-  //     for (i = 0; i < components.length; i += 1) {
-  //       comp = components[i];
-  //       $component = $(comp.obj);
-  //       $component.tooltipster({
-  //         multiple: true,
-  //         animation: 'fade',
-  //         delay: 200,
-  //         content: comp.error.message,
-  //         theme: 'tooltipster-punk',
-  //         position: directions[i % 3]
-  //       });
-  //       $component.tooltipster('show');
-  //       $component.css('border', '2px solid #000');
-  //     }
-  //   }
-  // }
+  component('.mdl-card__title').assert(function(expect) {
+    expect.to.be.descendantOf('.mdl-cell');
+  });
+
+  component('.mdl-card__title-text').assert(function(expect) {
+    expect.to.be.descendantOf('.mdl-card__title');
+  });
+
+  component('.so-deprecated').assert(function(expect){
+    expect.to.be.deprecated();
+  });
+
+  component('.mdl-button').assert(function(expect){
+    expect.to.be.tag('button');
+  });
 
 }());
