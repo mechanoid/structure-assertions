@@ -304,6 +304,11 @@ component('.panel-danger').assert( function(expect) {
 });
 ```
 
+## Contributions
+
+Any contributions are welcome. Open a ticket for missing features, bugs or for discussions about
+the concept of structure-assertions or just send in a pull-request, with a brief description of your changes.
+
 ## Credits
 
 The MIT License (MIT)
