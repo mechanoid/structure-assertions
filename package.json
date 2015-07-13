@@ -1,6 +1,6 @@
 {
   "name": "structure-assertions",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "component structure assertions to validate the html interface usage of frontend components",
   "main": "structure-assertions.js",
   "scripts": {
