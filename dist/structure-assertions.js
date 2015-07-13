@@ -293,7 +293,7 @@
 
 	      this.assert(
 	          matchesChildren.call(this, selector)
-	        , 'expected element to have a at least on child ' + selector
+	        , 'expected element to have a at least one child ' + selector
 	        , 'expected element to not have a child ' + selector
 	      );
 	    });
