@@ -42,7 +42,7 @@ gulp.task("webpack", function(callback) {
   });
 });
 
-gulp.task("serve", ["webpack"], function() {
+gulp.task("watch", ["webpack"], function() {
   "use strict";
 
 	gulp.watch(["src/**/*"], ["webpack"]);
