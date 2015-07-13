@@ -192,7 +192,8 @@
 	// THE SOFTWARE.
 	module.exports = (function(chai) {
 	  "use strict";
-	  var beginsWithVowel, hasClass;
+	  var beginsWithVowel, hasClass, hasClasses;
+
 	  beginsWithVowel = function() {
 	    return (['a', 'e', 'i', 'o', 'u'].indexOf(this[0].toLowerCase()) !== -1);
 	  };
@@ -205,6 +206,24 @@
 	    }
 
 	    return false;
+	  };
+
+	  hasClasses = function(classes) {
+	    var i, klass;
+	    // convert arguments to standard array
+	    classes = Array.prototype.slice.call(classes);
+
+	    for (i in classes) {
+	      if (classes.hasOwnProperty(i)) {
+	        klass = classes[i];
+
+	        if (hasClass.call(this, klass) === false) {
+	          return false;
+	        }
+	      }
+	    }
+
+	    return true;
 	  };
 
 	  chai.use(function (_chai, utils) {
@@ -328,17 +347,21 @@
 	    });
 
 	    // TODO: implement multiple classes case in detail with matcher for multiple classes
-	    _chai.Assertion.addMethod('classes', function () {
+	    _chai.Assertion.addMethod('classes', function (classes) {
 	      var messageBegin;
 
 	      if (utils.flag(this, 'isOptional')) {
 	        messageBegin = 'element may have any classes of ';
+	      } else {
+	        messageBegin = 'element should have classes ';
 	      }
 
 	      this.assert(
-	          false
+	          hasClasses.call(this._obj, arguments)
 	        , messageBegin + '"' + Array.prototype.join.call(arguments) + '"'
 	        , 'does not make no sense in any way for optionals o_O'
+	        , Array.prototype.join.call(arguments)
+	        , this._obj.className
 	      );
 	    });
 

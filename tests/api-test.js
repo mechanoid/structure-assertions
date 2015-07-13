@@ -84,6 +84,39 @@
     assert.strictEqual(results.indexOf('expected element to have a class hyphen'), 1, "class hyphen again should not be found, because prepended by a hyphen");
   });
 
+
+  QUnit.test("test classes assertion to be successful when all classes are given", function(assert) {
+    var results = [];
+
+    $('body').append($('<div class="test1 test2 test3" />'));
+
+    overwriteOnError(function(error){
+      results.push(error.message);
+    });
+
+    component('.test1').assert(function(expect) {
+      expect.to.have.classes('test1', 'test3', 'test3');
+    });
+
+    assert.strictEqual(results.indexOf('element should have classes "test1,test3,test3"'), -1, "classes should be found");
+  });
+
+  QUnit.test("test classes assertion to fail when not all classes are given", function(assert) {
+    var results = [];
+
+    $('body').append($('<div class="test1 test2 test3" />'));
+
+    overwriteOnError(function(error){
+      results.push(error.message);
+    });
+
+    component('.test1').assert(function(expect) {
+      expect.to.have.classes('test1', 'test3', 'fubarlu');
+    });
+
+    assert.strictEqual(results.indexOf('element should have classes "test1,test3,fubarlu"'), 0, "classes fubalu is missing, so it should not be found");
+  });
+
   QUnit.test("test attribute assertion", function(assert) {
     var results = [];
 
@@ -118,6 +151,6 @@
     });
 
     assert.strictEqual(results.indexOf('expected element to have a class test'), -1, "there should be no error for the class");
-    assert.strictEqual(results.indexOf('expected element to have an attribute "data-test""'), -1, "there should be no error for the attribute");
+    assert.strictEqual(results.indexOf('expected element to have an attribute "data-test"'), -1, "there should be no error for the attribute");
   });
 }());
